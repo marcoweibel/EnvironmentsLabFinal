@@ -1,7 +1,12 @@
+//Marco Weibel - Core Studio/Lab Environments Final
+
+//Thanks to Andy Best and his tutorial on FFT
+//http://andybest.net/2010/01/5-processing-video-tutorials
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 
-//Send syphone
+//Send syphon
 import codeanticode.syphon.*;
 SyphonServer server;
 
@@ -11,30 +16,32 @@ SyphonServer server;
 Minim minim;
 //Create audio input
 AudioInput in;
-//Fast feriour transform
+//Fast fourier transform
 FFT fft;
 
-// divide the width of the sketch 
+// int to divide the width of the sketch 
 int w;
 
-//Create Layer for drawing
+//PImage Layer for creating fading effect
 PImage fade;
 
-//Create variable for H value
+//Create variable for Hue value
 int hValue;
 
-//new with of PImage
+//width & height of PImage
 float rWidth, rHeight;
 
 void setup () {
   size (640, 480, P3D);
+  
   //initialize the new Minum object
   minim = new Minim(this); 
   in = minim.getLineIn(Minim.STEREO, 512);
+  
   //initialize fft
   fft = new FFT(in.bufferSize(), in.sampleRate());
   
-  //check out the minim instructions library
+  //logAverages(minBandwidth, bandsPerOctave);
   fft.logAverages(60,7);
 
   //set stroke to white
